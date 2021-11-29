@@ -34,9 +34,9 @@
     </div>
   </form>
   <div class="numbers-block">
-    <div class="number-item"  *ngFor="let number of numbers"> {{ number }}</div>
+    <div class="number-item" [appColor]="number"  *ngFor="let number of numbers"> {{ number }}</div>
   </div>
 
-  <div class="number-item">5</div>
+<!--  <div class="number-item">5</div>-->
 </div>
 

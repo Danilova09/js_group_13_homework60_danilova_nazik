@@ -14,10 +14,7 @@ export class AppComponent implements OnInit {
   number!: number;
   hiddenColor!: string;
 
-
-  constructor(private rouletteService: RouletteService) {
-
-  }
+  constructor(private rouletteService: RouletteService) { }
 
   ngOnInit() {
     this.numbers = this.rouletteService.getNumbersArray();
@@ -55,4 +52,5 @@ export class AppComponent implements OnInit {
     this.balance = 100;
     this.rate = '1';
   }
+
 }
