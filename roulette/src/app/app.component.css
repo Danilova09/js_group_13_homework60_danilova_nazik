@@ -1,0 +1,47 @@
+.main-block {
+  margin: 70px auto;
+  display: block;
+  width: 800px;
+  height: auto;
+}
+
+.form {
+  width: 400px;
+  text-align: center;
+  margin: auto;
+  display: block;
+}
+
+.form-check {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.numbers-block {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.number-item {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  border-radius: 5px;
+  line-height: 65px;
+  margin: 10px 8px;
+  font-size: 20px;
+  color: #fff;
+}
+
+.red {
+  background: #ce2031;
+}
+
+.black {
+  background: #000;
+}
+
+.zero {
+  background: darkgreen;;
+}
