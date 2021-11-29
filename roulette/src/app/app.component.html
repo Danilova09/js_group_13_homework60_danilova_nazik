@@ -1,5 +1,5 @@
 <div class="main-block">
-  <form class="form" ngNativeValidate>
+  <form class="form" (ngSubmit)="start()" ngNativeValidate>
     <strong style="display: block;" class="my-4">Balance: {{ balance }}</strong>
     <div class="input-group mb-3">
       <input type="text" class="form-control" required value="1" name="rate"
@@ -29,13 +29,13 @@
     <hr>
     <div class="buttons-block my-3">
       <button class="btn btn-primary ml-3" type="submit">start</button>
-      <button class="btn btn-danger ml-3" type="button">stop</button>
-      <button class="btn btn-secondary ml-3" type="button">reset</button>
+      <button class="btn btn-danger ml-3" type="button" (click)="stop()">stop</button>
+      <button class="btn btn-secondary ml-3" type="button" (click)="reset()">reset</button>
     </div>
   </form>
-<!--  <div class="numbers-block">-->
-<!--    <div class="number-item" [appColor]="number" *ngFor="let number of numbers"> {{ number }}</div>-->
-<!--  </div>-->
+  <div class="numbers-block">
+    <div class="number-item"  *ngFor="let number of numbers"> {{ number }}</div>
+  </div>
 
   <div class="number-item">5</div>
 </div>
