@@ -2,13 +2,12 @@ import { EventEmitter } from '@angular/core';
 import { interval, Observable, Subscription } from 'rxjs';
 
 export class RouletteService {
-  private numbers: number[] = [];
   numbersArrayChange = new EventEmitter<number[]>();
   newNumber = new EventEmitter<number>();
+  private numbers: number[] = [];
   private isInterval = false;
   private startInterval!: Observable<number>;
   private intervalSubscription!: Subscription;
-
 
   start() {
     this.startInterval = interval(1000);
@@ -69,4 +68,5 @@ export class RouletteService {
     }
     return color;
   }
+
 }

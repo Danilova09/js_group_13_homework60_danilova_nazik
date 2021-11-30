@@ -1,6 +1,10 @@
 <div class="main-block">
   <form class="form" (ngSubmit)="start()" ngNativeValidate>
-    <strong style="display: block;" class="my-4">Balance: {{ balance }}</strong>
+    <strong  class="my-4 d-inline-block">Balance: </strong>
+    <strong *ngIf="!wrongRate"> {{ balance }}</strong>
+    <div class="alert alert-danger" role="alert" *ngIf="wrongRate">
+      Please, use only numbers in your rate
+    </div>
     <div class="input-group mb-3">
       <input type="text" class="form-control" required value="1" name="rate"
              [(ngModel)]="rate">
@@ -36,7 +40,5 @@
   <div class="numbers-block">
     <div class="number-item" [appColor]="number"  *ngFor="let number of numbers"> {{ number }}</div>
   </div>
-
-<!--  <div class="number-item">5</div>-->
 </div>
 

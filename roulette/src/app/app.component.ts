@@ -7,14 +7,16 @@ import { RouletteService } from './shared/roulette.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  selectedCategory = 'red';
   rate = '1';
   balance = 100;
-  selectedCategory = 'red';
   numbers: number[] = [];
   number!: number;
   hiddenColor!: string;
+  wrongRate = false;
 
-  constructor(private rouletteService: RouletteService) { }
+  constructor(private rouletteService: RouletteService) {
+  }
 
   ngOnInit() {
     this.numbers = this.rouletteService.getNumbersArray();
@@ -24,23 +26,13 @@ export class AppComponent implements OnInit {
     this.rouletteService.newNumber.subscribe((newNumber: number) => {
       this.number = newNumber;
       this.hiddenColor = this.rouletteService.getColor(this.number);
-      if (this.hiddenColor === 'zero' && this.selectedCategory === 'zero') {
-        this.balance += 35;
-      } else if (this.hiddenColor === this.selectedCategory) {
-        this.balance += parseInt(this.rate);
-      } else if (this.hiddenColor !== this.selectedCategory) {
-        if (this.balance === 0 || this.balance < 0) {
-          this.balance = 0;
-          this.stop();
-        } else {
-          this.balance -= parseInt(this.rate);
-        }
-      }
+      this.checkValues();
     });
   }
 
   start() {
     this.rouletteService.start();
+    this.wrongRate = false;
   }
 
   stop() {
@@ -49,8 +41,27 @@ export class AppComponent implements OnInit {
 
   reset() {
     this.rouletteService.reset();
+    this.wrongRate = false;
     this.balance = 100;
     this.rate = '1';
+  }
+
+  checkValues() {
+    if (isNaN(this.balance)) {
+      this.stop();
+      this.balance = 100;
+      this.wrongRate = true;
+    }
+    if (this.balance === 0 || this.balance < 0) {
+      this.balance = 0;
+      this.stop();
+    } else if (this.hiddenColor === 'zero' && this.selectedCategory === 'zero') {
+      this.balance += 35;
+    } else if (this.hiddenColor === this.selectedCategory) {
+      this.balance += parseInt(this.rate);
+    } else if (this.hiddenColor !== this.selectedCategory) {
+      this.balance -= parseInt(this.rate);
+    }
   }
 
 }
